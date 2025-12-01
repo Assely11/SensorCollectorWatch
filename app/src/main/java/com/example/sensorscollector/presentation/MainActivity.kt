@@ -169,6 +169,8 @@ class MainActivity : ComponentActivity() {
             file= File(filesDir,fileName);
             if(!file.exists()){
                 file.createNewFile();
+            }else{
+                file.writeText("");
             }
             isRecord=true;
             Toast.makeText(this@MainActivity,"start record", Toast.LENGTH_SHORT).show();
