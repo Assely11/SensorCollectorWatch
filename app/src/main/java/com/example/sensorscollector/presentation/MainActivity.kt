@@ -74,6 +74,7 @@ class MainActivity : ComponentActivity() {
     private var isRecord=false;
 
     private var curret_Time= System.currentTimeMillis().toLong();
+    private var path_dir="/sdcard/Documents/";
 
 
 
@@ -140,15 +141,22 @@ class MainActivity : ComponentActivity() {
             LinearLayout.LayoutParams.WRAP_CONTENT
         );
 
+        var linearP= LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.MATCH_PARENT
+        );
+
         buttonLP.setMargins(button_margin);
         scrollLP.setMargins(text_margin);
+        linearP.setMargins(100,300,100,100);
+
 
         linearLayout.addView(editorView,buttonLP);
         linearLayout.addView(startButton,buttonLP);
 //        linearLayout.addView(stopButton,buttonLP);
         linearLayout.addView(scrollView,scrollLP);
 
-        this.addContentView(linearLayout,scrollLP);
+        this.addContentView(linearLayout,linearP);
 
 
         this.window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -166,7 +174,7 @@ class MainActivity : ComponentActivity() {
                 fileName= String.format("%d.log", System.currentTimeMillis());
             }
 
-            file= File(filesDir,fileName);
+            file= File(path_dir,fileName);
             if(!file.exists()){
                 file.createNewFile();
             }else{
